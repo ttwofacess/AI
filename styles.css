@@ -124,19 +124,19 @@ form {
     display: flex;
     gap: 8px;
 
-    input {
+    /* input {
         border-radius: 999999px;
         flex-grow: 1;
-        border: 1px solid #444; /* Borde oscuro */
-        padding: 8px 16px;
-        background: #2a2a2a; /* Fondo oscuro */
-        color: #e0e0e0; /* Texto claro */
-        outline: none;
+        border: 1px solid #444; */ /* Borde oscuro */
+        /* padding: 8px 16px;
+        background: #2a2a2a; */ /* Fondo oscuro */
+        /* color: #e0e0e0; */ /* Texto claro */
+        /* outline: none;
 
         &:focus {
-            border-color: #007bff; /* Borde azul al enfocar */
-        }
-    }
+            border-color: #007bff; */ /* Borde azul al enfocar */
+        /* } 
+    } */
 
     button {
         background: #007bff; /* Azul para el botón */
@@ -158,6 +158,25 @@ form {
         }
     }
 }
+
+form textarea {
+    border-radius: 999999px;
+    flex-grow: 1;
+    border: 1px solid #444;
+    padding: 8px 16px;
+    background: #2a2a2a;
+    color: #e0e0e0;
+    outline: none;
+    resize: none; /* Evita que el usuario redimensione manualmente */
+    overflow: hidden; /* Oculta el scroll */
+    /* min-height: 40px; */ /* Altura mínima inicial */
+    min-height: 20px;
+    line-height: 1.5; /* Espaciado entre líneas */
+  }
+  
+  form textarea:focus {
+    border-color: #007bff;
+  }
 
 small {
     font-size: 10px;

@@ -21,7 +21,8 @@
     // pongo delante de la variable un símbolo de $
     // para indicar que es un elemento del DOM
     const $form = $('form')
-    const $input = $('input')
+    /* const $input = $('input') */
+    const $input = $('textarea') // Cambia la selección a textarea
     const $template = $('#message-template')
     const $messages = $('ul')
     const $container = $('main')
@@ -61,6 +62,11 @@
             )
         })
 
+    $input.addEventListener('input', () => {
+      $input.style.height = 'auto' // Restablece la altura
+      $input.style.height = $input.scrollHeight + 'px'; // Ajusta la altura al contenido
+    });
+
     $form.addEventListener('submit', async (event) => {
       event.preventDefault()
       const messageText = $input.value.trim()
@@ -79,6 +85,8 @@
       }
 
       messages.push(userMessage)
+
+      $input.style.height = 'auto'
 
       const chunks = await engine.chat.completions.create({
         messages,
@@ -156,7 +164,8 @@
   </main>
 
   <form>
-    <input placeholder="Escribe tu mensaje aquí...">
+    <!-- <input placeholder="Escribe tu mensaje aquí..."> -->
+    <textarea placeholder="Escribe tu mensaje aquí..." rows="1"></textarea>
     <button disabled>Enviar</button>
   </form>
 
