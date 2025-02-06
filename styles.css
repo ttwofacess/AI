@@ -1,123 +1,177 @@
-body {
+  body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background: #f0f0f0;
+    background: #1a1a1a; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
     display: grid;
     place-content: center;
     height: 100dvh;
-  }
+    margin: 0;
+}
 
-  main {
+aside {
+    background: #2a2a2a; /* Fondo oscuro */
+    border: 1px solid #444; /* Borde más oscuro */
+    border-radius: 12px; /* Bordes más redondeados */
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    color: #e0e0e0; /* Texto claro */
+}
+
+aside label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    color: #e0e0e0; /* Texto claro */
+}
+
+aside select {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 999999px;
+    border: 1px solid #444; /* Borde oscuro */
+    background: #2a2a2a; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
+    outline: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+aside select:focus {
+    border-color: #007bff; /* Borde azul al enfocar */
+}
+
+aside select option {
+    background: #2a2a2a; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
+}
+
+main {
     width: 400px;
     max-width: 100%;
     height: 70vh;
-
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 8px;
+    background: #2a2a2a; /* Fondo oscuro para el contenedor principal */
+    border: 1px solid #444; /* Borde más oscuro */
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    padding: 16px;
     margin-bottom: 16px;
-
     overflow-y: auto;
     scroll-behavior: smooth;
-  }
+}
 
-  ul {
+ul {
     display: flex;
     flex-direction: column;
     list-style: none;
     padding: 0;
-  }
+    margin: 0;
+}
 
-  .message {
+.message {
     display: flex;
     flex-direction: column;
-    margin: 4px 0;
-    padding: 4px 8px;
+    margin: 8px 0;
+    padding: 8px 12px;
+    border-radius: 12px; /* Bordes más redondeados */
 
     span {
-      width: 36px;
-      height: 36px;
-      background: #eee;
-      font-size: 12px;
-      font-weight: 500;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 999999px;
+        width: 36px;
+        height: 36px;
+        background: #444; /* Fondo oscuro para el ícono */
+        font-size: 12px;
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 999999px;
+        color: #e0e0e0; /* Texto claro */
     }
 
     p {
-      border-radius: 4px;
-      padding: 4px 8px;
-      margin-top: 4px;
+        border-radius: 8px; /* Bordes más redondeados */
+        padding: 8px 12px;
+        margin-top: 8px;
+        background: #3a3a3a; /* Fondo oscuro para los mensajes */
+        color: #e0e0e0; /* Texto claro */
     }
 
     &.user {
-      align-self: flex-end;
-      align-items: flex-end;
+        align-self: flex-end;
+        align-items: flex-end;
 
-      span,
-      p {
-        background: rgb(219, 236, 255);
-      }
+        span,
+        p {
+            background: #007bff; /* Azul para mensajes del usuario */
+            color: #fff; /* Texto blanco */
+        }
     }
 
     &.bot {
-      align-self: flex-start;
+        align-self: flex-start;
 
-      span,
-      p {
-        background: rgb(198, 255, 220);
-      }
+        span,
+        p {
+            background: #28a745; /* Verde para mensajes del bot */
+            color: #fff; /* Texto blanco */
+        }
     }
-  }
+}
 
-  form {
+form {
     display: flex;
+    gap: 8px;
 
     input {
-      border-radius: 999999px;
-      flex-grow: 1;
-      border: 0;
-      padding: 8px;
-      margin-right: 8px;
-      border: 1px solid #ccc;
+        border-radius: 999999px;
+        flex-grow: 1;
+        border: 1px solid #444; /* Borde oscuro */
+        padding: 8px 16px;
+        background: #2a2a2a; /* Fondo oscuro */
+        color: #e0e0e0; /* Texto claro */
+        outline: none;
+
+        &:focus {
+            border-color: #007bff; /* Borde azul al enfocar */
+        }
     }
 
     button {
-      background: #09f;
-      border: 0;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-      padding: 8px;
-      transition: background .3s ease;
+        background: #007bff; /* Azul para el botón */
+        border: 0;
+        color: white;
+        border-radius: 999999px;
+        cursor: pointer;
+        padding: 8px 16px;
+        transition: background 0.3s ease;
 
-      &[disabled] {
-        background: #ccc;
-        opacity: .6;
-        pointer-events: none;
-      }
+        &[disabled] {
+            background: #555; /* Fondo gris cuando está deshabilitado */
+            opacity: 0.6;
+            pointer-events: none;
+        }
 
-      &:hover {
-        background: rgb(0, 104, 173);
-      }
+        &:hover {
+            background: #0056b3; /* Azul más oscuro al pasar el mouse */
+        }
     }
-  }
+}
 
-  small {
+small {
     font-size: 10px;
-    color: #555;
+    color: #888; /* Texto gris claro */
     position: fixed;
     bottom: 10px;
     left: 0;
     right: 0;
     margin: auto;
     width: 400px;
-  }
+    text-align: center;
+}
 
-  .loading {
+.loading {
     text-align: center;
     display: flex;
     justify-content: center;
@@ -127,31 +181,32 @@ body {
     margin-top: 50%;
 
     i {
-      pointer-events: none;
-      width: 2.5em;
-      height: 2.5em;
-      border: 0.4em solid transparent;
-      border-color: #eee;
-      border-top-color: #3E67EC;
-      border-radius: 50%;
-      animation: loadingspin 1s linear infinite;
+        pointer-events: none;
+        width: 2.5em;
+        height: 2.5em;
+        border: 0.4em solid transparent;
+        border-color: #444; /* Borde oscuro */
+        border-top-color: #007bff; /* Azul para el spinner */
+        border-radius: 50%;
+        animation: loadingspin 1s linear infinite;
     }
 
     h4 {
-      color: #444;
-      margin-bottom: 8px;
+        color: #e0e0e0; /* Texto claro */
+        margin-bottom: 8px;
     }
 
     h5 {
-      font-weight: 400;
-      margin: 0;
-      font-size: 10px;
-      opacity: .4;
+        font-weight: 400;
+        margin: 0;
+        font-size: 10px;
+        opacity: 0.6;
+        color: #888; /* Texto gris claro */
     }
-  }
+}
 
-  @keyframes loadingspin {
+@keyframes loadingspin {
     100% {
-      transform: rotate(360deg)
+        transform: rotate(360deg);
     }
-  }
+}
