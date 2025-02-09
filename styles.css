@@ -104,7 +104,8 @@ ul {
 
         span,
         p {
-            background: #007bff; /* Azul para mensajes del usuario */
+            /* background: #007bff; */ /* Azul para mensajes del usuario */
+            background: #004494;
             color: #fff; /* Texto blanco */
         }
     }
@@ -114,7 +115,8 @@ ul {
 
         span,
         p {
-            background: #28a745; /* Verde para mensajes del bot */
+            /* background: #28a745; */ /* Verde para mensajes del bot */
+            background: #156f2c;
             color: #fff; /* Texto blanco */
         }
     }
