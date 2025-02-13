@@ -7,7 +7,7 @@
   <link rel="icon" href="./assets/ico/favicon.ico" type="image/png" />
   <title>IA Local 100% privado y gratis</title>
   <link rel="stylesheet" href="styles.css">
-
+  <!-- <script src="https://esm.run/@mlc-ai/web-llm" integrity="sha384-AQYd2MP0u1aoTkkBYtd9kWiG7si0WpP8wsSCqSQaMP6XejP0AuUT9RVoMm03nsfX" crossorigin="anonymous"></script> -->
   <script type="module">
     /* 
     en el vídeo usamos "https://esm.run/@mlc-ai/web-llm"
@@ -15,6 +15,7 @@
     en el código usamos https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.46/+esm
     para fijar la versión */
     /* import { CreateWebWorkerMLCEngine } from "https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.46/+esm" */
+    
     import { CreateWebWorkerMLCEngine } from "https://esm.run/@mlc-ai/web-llm"
 
     const $ = el => document.querySelector(el)
@@ -89,27 +90,33 @@
 
       $input.style.height = 'auto'
 
-      const chunks = await engine.chat.completions.create({
-        messages,
-        stream: true
-      })
+      try {
+        const chunks = await engine.chat.completions.create({
+          messages,
+          stream: true
+        });
 
-      let reply = ""
-
-      const $botMessage = addMessage("", 'bot')
+      let reply = "";
+      const $botMessage = addMessage("", 'bot');
 
       for await (const chunk of chunks) {
-        const choice = chunk.choices[0]
-        const content = choice?.delta?.content ?? ""
-        reply += content
-        $botMessage.textContent = reply
+        const choice = chunk.choices[0];
+        const content = choice?.delta?.content ?? "";
+        reply += content;
+        $botMessage.textContent = reply;
       }
 
-      $button.removeAttribute('disabled')
       messages.push({
         role: 'assistant',
         content: reply
-      })
+      });
+    } catch (error) {
+        console.error('Error:', error);
+        addMessage("Hubo un error al procesar tu solicitud. Por favor, inténtalo de nuevo.", 'bot');
+      } finally {
+        $button.removeAttribute('disabled');
+      }
+      
       $container.scrollTop = $container.scrollHeight
     })
 
