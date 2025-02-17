@@ -7,6 +7,10 @@
   <link rel="icon" href="./assets/ico/favicon.ico" type="image/png" />
   <title>IA Local 100% privado y gratis</title>
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Incluir DOMPurify desde un CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+
   <!-- <script src="https://esm.run/@mlc-ai/web-llm" integrity="sha384-AQYd2MP0u1aoTkkBYtd9kWiG7si0WpP8wsSCqSQaMP6XejP0AuUT9RVoMm03nsfX" crossorigin="anonymous"></script> -->
   <script type="module">
     /* 
@@ -103,7 +107,11 @@
         const choice = chunk.choices[0];
         const content = choice?.delta?.content ?? "";
         reply += content;
-        $botMessage.textContent = reply;
+        /* $botMessage.textContent = reply; */
+
+        // Sanitizar el contenido antes de insertarlo en el DOM
+        const sanitizedReply = DOMPurify.sanitize(reply);
+        $botMessage.textContent = sanitizedReply;
       }
 
       messages.push({
@@ -121,6 +129,10 @@
     })
 
     function addMessage(text, sender) {
+
+      // Sanitizar el texto antes de insertarlo en el DOM
+      const sanitizedText = DOMPurify.sanitize(text);
+
       // clonar el template
       const clonedTemplate = $template.content.cloneNode(true)
       const $newMessage = clonedTemplate.querySelector('.message')
@@ -128,7 +140,9 @@
       const $who = $newMessage.querySelector('span')
       const $text = $newMessage.querySelector('p')
 
-      $text.textContent = text
+      /* $text.textContent = text */
+      // Insertar el texto sanitizado
+      $text.textContent = sanitizedText;
       $who.textContent = sender === 'bot' ? 'IA' : 'Tú'
       $newMessage.classList.add(sender)
 
