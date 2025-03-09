@@ -180,6 +180,28 @@ form textarea {
     border-color: #007bff;
   }
 
+ /* New styles for file attachment */
+ .input-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+
+  #attach-button {
+    padding: 8px;
+    cursor: pointer;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #e0e0e0;
+    transition: background 0.3s ease;
+  }
+
+  #attach-button:hover {
+    background: #3a3a3a;
+  }
+
 small {
     font-size: 10px;
     color: #888; /* Texto gris claro */

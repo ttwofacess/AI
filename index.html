@@ -39,6 +39,32 @@
     let messages = []
     let end = false
 
+    const $fileInput = $('#file-input')
+    const $attachButton = $('#attach-button')
+    let attachedFileContent = null
+
+    // Agregar un evento de clic al botón de adjuntar archivo
+    $attachButton.addEventListener('click', () => {
+      $fileInput.click()
+    })
+
+    $fileInput.addEventListener('change', async (event) => {
+      const file = event.target.files[0]
+      if (file) {
+        try {
+          const text = await file.text()
+          attachedFileContent = {
+            name: file.name,
+            content: text
+          }
+          $input.value += `\n\nArchivo adjunto: ${file.name}`
+          $input.style.height = $input.scrollHeight + 'px'
+        } catch (error) {
+          console.error('Error reading file:', error)
+        }
+      }
+    })
+
     /* const SELECTED_MODEL = 'Llama-3-8B-Instruct-q4f32_1-MLC-1k' */
     /* const SELECTED_MODEL = 'Llama-3.2-1B-Instruct-q4f32_1-MLC' */
 
@@ -185,8 +211,12 @@
   </main>
 
   <form>
+    <div class="input-container">
     <!-- <input placeholder="Escribe tu mensaje aquí..."> -->
-    <textarea placeholder="Escribe tu mensaje aquí..." rows="1"></textarea>
+      <textarea placeholder="Escribe tu mensaje aquí..." rows="1"></textarea>
+      <input type="file" id="file-input" accept=".js,.py,.html,.css,.cpp,.java,.ts" style="display: none;">
+      <button type="button" id="attach-button" title="Adjuntar archivo de código">📎</button>
+    </div>
     <button disabled>Enviar</button>
   </form>
 
