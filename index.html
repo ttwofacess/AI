@@ -74,6 +74,9 @@
         $modelSelect.addEventListener('change', async (event) => {
             SELECTED_MODEL = event.target.value;
 
+            // Deshabilitar el botón mientras se carga el modelo
+            $button.setAttribute('disabled', '')
+
             /* const engine = await CreateWebWorkerMLCEngine( */
             engine = await CreateWebWorkerMLCEngine(
               new Worker('./worker.js', { type: 'module' }),
@@ -84,7 +87,10 @@
                   if (info.progress === 1 && !end) {
                     end = true
                     $loading?.parentNode?.removeChild($loading)
-                    $button.removeAttribute('disabled')
+                    // Solo habilitar el botón si hay un modelo seleccionado
+                    if (SELECTED_MODEL) {
+                      $button.removeAttribute('disabled')
+                    }
                     addMessage("¡Hola! Soy una IA que se ejecuta completamente en tu navegador. ¿En qué puedo ayudarte hoy?", 'bot')
                     $input.focus()
                   }
